@@ -1,0 +1,14 @@
+[project]
+name = "lab8-multi-agents"
+version = "0.1.0"
+description = "LAB: Multi-Agents en Langchain"
+requires-python = ">=3.10"
+dependencies = [
+    "langchain",
+    "langchain-ollama",
+    "langgraph",
+    "python-dotenv",
+]
+
+[tool.uv]
+package = false

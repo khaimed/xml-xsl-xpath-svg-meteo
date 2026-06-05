@@ -1,53 +1,42 @@
-# TP LLM et LangChain
+# AI Agentic — Master SDIA
 
-Depot unique regroupant deux TPs du meme module.
+Depot unique regroupant tous les Labs et TPs du module **SMA et IAD — Master BDCC**.
 
 ## Structure
 
-- [tp-langchain-agents](./tp-langchain-agents) : TP `Agents avec LangChain`
-- [tp-prompt-engineering](./tp-prompt-engineering) : TP `Ingenierie des prompts`
+| Dossier | Sujet |
+|---|---|
+| [Lab1-prompt-engineering](./Lab1-prompt-engineering) | Ingenierie des prompts (tokenisation, Ollama, Groq, OpenAI, JSON, images) |
+| [Lab2-langchain-agents](./Lab2-langchain-agents) | Agents avec LangChain (agent chef personnel, memoire, web search) |
+| [Lab3-RAG](./Lab3-RAG) | RAG sur PDF (HuggingFace embeddings) + agent SQL (Chinook DB) |
+| [Lab4-MCP](./Lab4-MCP) | Model Context Protocol : stdio, serveur de temps, HTTP streaming |
+| [Lab5-LangGraph_Studio](./Lab5-LangGraph_Studio) | LangGraph Studio : visualisation et test d'agents |
+| [Lab6-Contexte_et_Etat](./Lab6-Contexte_et_Etat) | Contexte par invocation (`ColourContext`) et etat persiste (`CustomState`) |
+| [Lab7-Human_In_The_Loop](./Lab7-Human_In_The_Loop) | Agent HITL : interrupt(), approve / reject / edit |
+| [Lab8-Multi-Agents](./Lab8-Multi-Agents) | Systeme multi-agents hierarchique avec sous-agents comme outils |
+| [TP-Chef_personnel](./TP-Chef_personnel) | Agent chef cuisinier : RAG + memoire + recherche web + system prompt |
 
-## 1. TP Agents avec LangChain
+## Prerequis communs
 
-Ce dossier contient un agent `chef personnel` construit avec :
-- un `system message`
-- une `memoire`
-- un `tool` de recherche web
-- un modele local via `Ollama`
-
-Fichier principal :
-- [chef_personnel_agent.py](./tp-langchain-agents/chef_personnel_agent.py)
-
-Execution rapide :
+- Python >= 3.10
+- [uv](https://docs.astral.sh/uv/) — gestionnaire de paquets
+- [Ollama](https://ollama.com/) avec le modele `llama3.2:3b`
 
 ```bash
-cd tp-langchain-agents
-pip install -r requirements.txt
-python chef_personnel_agent.py
+ollama pull llama3.2:3b
 ```
 
-## 2. TP Ingenierie des prompts
+## Execution
 
-Ce dossier contient les exercices du document sur :
-- la tokenisation avec `tiktoken`
-- les prompts avec `Ollama`
-- les prompts avec `Groq`
-- les prompts avec `OpenAI`
-- une sortie JSON
-- la generation et la description d'image
-
-Projet principal :
-- [README du TP Prompt](./tp-prompt-engineering/README.md)
-
-Execution rapide :
+Chaque lab est autonome avec son propre environnement virtuel :
 
 ```bash
-cd tp-prompt-engineering
-uv venv
+cd Lab6-Contexte_et_Etat
 uv sync
+uv run --active python part1_context.py
 ```
 
 ## Remarques
 
-- Certains scripts demandent des cles API (`OpenAI`, `Groq`) ou un serveur `Ollama` actif.
-- Les fichiers `.env` ne doivent pas etre pushes sur GitHub.
+- Les fichiers `.env` ne doivent pas etre pushes sur GitHub (voir `.env.example` dans chaque lab).
+- Certains labs demandent des cles API optionnelles (`TAVILY_API_KEY`, `LANGSMITH_API_KEY`).
