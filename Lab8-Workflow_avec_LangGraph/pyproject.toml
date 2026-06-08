@@ -1,7 +1,7 @@
 [project]
-name = "lab6-contexte-et-etat"
+name = "lab8-workflow-avec-langgraph"
 version = "0.1.0"
-description = "LAB: Contexte et Etat dans un agent LangChain/LangGraph"
+description = "LAB: Workflows avec LangGraph"
 requires-python = ">=3.10"
 dependencies = [
     "langchain",
