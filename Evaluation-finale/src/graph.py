@@ -1,6 +1,10 @@
+import json
+import re
+import uuid
 from typing import Literal
 
-from langchain.messages import HumanMessage, SystemMessage, ToolMessage
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage, ToolMessage
+from langchain_core.messages.tool import ToolCall
 from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.graph import END, START, StateGraph
 
@@ -9,16 +13,33 @@ from src.llm import get_llm
 from src.state import AgentState
 from src.tools import TOOLS, TOOLS_BY_NAME
 
+def _try_parse_tool_call(content: str):
+    """Detecte et parse un appel d'outil retourne en JSON brut par le modele."""
+    text = content.strip()
+    text = re.sub(r"```(?:json)?\n?", "", text).strip("`").strip()
+    try:
+        data = json.loads(text)
+        if isinstance(data, dict) and "name" in data:
+            args = data.get("parameters", data.get("arguments", data.get("args", {})))
+            return str(data["name"]), args if isinstance(args, dict) else {}
+    except (json.JSONDecodeError, KeyError, TypeError):
+        pass
+    return None, None
+
+
 SYSTEM_PROMPT = (
-    "Tu es un assistant specialise en education financiere personnelle "
-    "(budget, epargne, credit, investissement, surendettement). "
-    "Utilise l'outil retrieve_documents pour t'appuyer sur la base documentaire "
+    "Tu es un assistant specialise en education financiere personnelle au Maroc "
+    "(budget, epargne, credit, investissement, assurance, marche des capitaux). "
+    "Ta base documentaire provient d'institutions officielles marocaines : "
+    "Bank Al-Maghrib (BKAM), l'Autorite Marocaine du Marche des Capitaux (AMMC) "
+    "et l'Autorite de Controle des Assurances et de la Prevoyance Sociale (ACAPS). "
+    "Utilise l'outil retrieve_documents pour t'appuyer sur ces documents "
     "avant de repondre a une question de connaissance generale. "
     "Utilise compute_savings_projection ou compute_loan_payment pour les questions "
     "qui necessitent un calcul financier ; les montants sont exprimes en dirhams "
     "marocains (MAD) et tu dois utiliser cette devise dans tes reponses. "
-    "Reponds en francais, de facon claire et "
-    "precise, et cite tes sources quand tu t'appuies sur un document."
+    "Reponds en francais, de facon claire et precise, "
+    "et cite tes sources (nom du document, page) quand tu t'appuies sur un document."
 )
 
 model = get_llm()
@@ -28,6 +49,17 @@ model_with_tools = model.bind_tools(TOOLS)
 def agent_node(state: AgentState) -> dict:
     """Le LLM decide d'appeler un outil ou de repondre directement."""
     response = model_with_tools.invoke([SystemMessage(content=SYSTEM_PROMPT)] + state["messages"])
+
+    # Certains petits modeles (llama3.2:3b) retournent parfois un JSON brut
+    # au lieu du mecanisme tool_calls structure. On detecte et corrige.
+    if not getattr(response, "tool_calls", None) and response.content:
+        tool_name, tool_args = _try_parse_tool_call(response.content)
+        if tool_name and tool_name in TOOLS_BY_NAME:
+            response = AIMessage(
+                content="",
+                tool_calls=[ToolCall(name=tool_name, args=tool_args, id=str(uuid.uuid4()))],
+            )
+
     return {"messages": [response], "llm_calls": state.get("llm_calls", 0) + 1}
 
 

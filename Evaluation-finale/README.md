@@ -1,8 +1,8 @@
-# Evaluation finale - Agentic RAG (Education financiere personnelle)
+# Evaluation finale - Agentic RAG (Education financiere personnelle au Maroc)
 
 Systeme RAG agentique construit avec LangGraph (sans `create_agent`), sur le
-theme de l'education financiere personnelle : budget, epargne, credit,
-investissement et surendettement.
+theme de l'education financiere personnelle au Maroc : budget, epargne, credit,
+investissement, marche des capitaux et assurance.
 
 ## Stack
 
@@ -25,12 +25,19 @@ ollama pull llama3.2:3b
 
 ## Base documentaire
 
-4 guides publics sur l'education financiere personnelle (AMF, La Finance pour
-Tous, IEDOM/Banque de France) :
+4 guides officiels marocains sur l'education financiere (sources publiques) :
+
+| Fichier | Institution | Lien |
+|---------|-------------|------|
+| `bkam_guide_grand_public.pdf` | Bank Al-Maghrib | [Telecharger](https://www.bkam.ma/pedagogique/content/download/344251/2920093/BKAM_Guide_PEDA_0318_Web_VF.pdf) |
+| `ammc_guide_investisseur_circuits.pdf` | AMMC | [Telecharger](https://www.ammc.ma/sites/default/files/Guide%20de%20l%27investisseur%20-%20Nov%202020.pdf) |
+| `ammc_guide_instruments_financiers.pdf` | AMMC | [Telecharger](https://www.ammc.ma/sites/default/files/Guide%20de%20l%27investisseur%20-%20Comprendre%20les%20instruments%20financiers%20et%20leurs%20m%C3%A9canismes_0.pdf) |
+| `acaps_guide_assure.pdf` | ACAPS | [Telecharger](https://www.acaps.ma/sites/default/files/acaps_guide_assure_vf.pdf) |
+
+Placer les PDF dans `data/pdfs/` puis construire le vectorstore :
 
 ```bash
-uv run python download_pdfs.py   # telecharge les PDF dans data/pdfs/
-uv run python ingest.py          # construit le vectorstore Chroma
+uv run python ingest.py   # 132 chunks indexes dans data/chroma_db/
 ```
 
 ## Utilisation

@@ -7,8 +7,8 @@ from pathlib import Path
 from src.graph import graph
 
 BASE_DIR = Path(__file__).resolve().parent
-MERMAID_PATH = BASE_DIR / "graph.mmd"
-PNG_PATH = BASE_DIR / "graph.png"
+MERMAID_PATH = BASE_DIR / "docs" / "graph.mmd"
+PNG_PATH = BASE_DIR / "docs" / "graph.png"
 
 
 def main() -> None:

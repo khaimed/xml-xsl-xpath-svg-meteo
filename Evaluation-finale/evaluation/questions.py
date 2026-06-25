@@ -1,51 +1,60 @@
 """10 questions simples + 10 questions complexes sur l'education financiere
-personnelle (budget, epargne, credit, investissement, surendettement)."""
+personnelle au Maroc (BKAM, AMMC, ACAPS)."""
 
 SIMPLE_QUESTIONS = [
-    "Qu'est-ce qu'un budget personnel ?",
-    "Quelle est la difference entre un compte courant et un compte d'epargne ?",
-    "Qu'est-ce que l'AMF (Autorite des Marches Financiers) ?",
-    "Qu'est-ce qu'un taux d'interet ?",
-    "Qu'est-ce qu'un credit renouvelable ?",
-    "Qu'est-ce que le surendettement ?",
-    "Quels sont les principaux postes d'un budget mensuel ?",
-    "Qu'est-ce qu'une commission de surendettement ?",
-    "Qu'est-ce que la diversification d'un portefeuille d'investissement ?",
-    "Qu'est-ce qu'un livret d'epargne reglemente ?",
+    "Quel est le role de Bank Al-Maghrib dans le systeme bancaire marocain ?",
+    "Qu'est-ce qu'un compte sur carnet au Maroc ?",
+    "Qu'est-ce que l'AMMC (Autorite Marocaine du Marche des Capitaux) ?",
+    "Qu'est-ce qu'un taux d'interet et comment est-il fixe au Maroc ?",
+    "Qu'est-ce qu'un OPCVM (Organisme de Placement Collectif en Valeurs Mobilieres) ?",
+    "Qu'est-ce que l'ACAPS et quel est son role au Maroc ?",
+    "Quels sont les principaux types de credits aux particuliers au Maroc ?",
+    "Qu'est-ce qu'une action cotee en bourse de Casablanca ?",
+    "Qu'est-ce qu'une obligation et comment fonctionne-t-elle ?",
+    "Qu'est-ce qu'un contrat d'assurance vie au Maroc ?",
 ]
 
 COMPLEX_QUESTIONS = [
     (
-        "Si j'epargne 100 dirhams par mois pendant 1 an avec un taux d'interet annuel "
-        "de 6%, combien aurai-je a la fin, sachant que je commence avec 1000 dirhams ?"
+        "Si j'epargne 500 dirhams par mois pendant 3 ans avec un taux d'interet annuel "
+        "de 3%, combien aurai-je a la fin, sachant que je commence avec 2000 dirhams ?"
     ),
     (
-        "Quelle serait la mensualite d'un credit de 10000 dirhams sur 1 an a un taux "
-        "annuel de 6%, et combien d'interets vais-je payer au total ?"
+        "Quelle serait la mensualite d'un credit immobilier de 300 000 dirhams sur 15 ans "
+        "a un taux annuel de 4.5%, et combien d'interets vais-je payer au total ?"
     ),
     (
-        "Quels sont les risques de l'investissement en bourse selon le guide AMF, "
-        "et comment puis-je les reduire ?"
-    ),
-    "Compare les avantages et les inconvenients d'epargner sur un livret par rapport a investir en bourse.",
-    (
-        "Quelles sont les etapes a suivre pour deposer un dossier de surendettement, "
-        "et quelles sont les consequences pour l'emprunteur ?"
-    ),
-    "Comment etablir un budget personnel equilibre et quelles sont les erreurs courantes a eviter ?",
-    (
-        "Si je rembourse un credit de 12000 dirhams sur 2 ans a un taux de 4%, quelle "
-        "est ma mensualite, et comment ce taux affecte-t-il le cout total par rapport "
-        "a un taux de 8% ?"
-    ),
-    "Quel est le role de l'education financiere dans la prevention du surendettement ?",
-    (
-        "Quelles sont les differences entre les types de placements presentes dans le "
-        "guide d'investissement de l'AMF (epargne, actions, obligations) ?"
+        "Quels sont les risques de l'investissement en bourse selon le guide AMMC, "
+        "et quelles bonnes pratiques recommande-t-il ?"
     ),
     (
-        "En combinant 50 dirhams d'epargne mensuelle pendant 5 ans a 3% d'interet annuel, "
-        "et en comparant avec un credit de meme montant sur la meme duree a 5%, quel "
-        "est l'ecart financier final entre epargner et emprunter ?"
+        "Compare les avantages et les inconvenients d'epargner sur un compte sur carnet "
+        "par rapport a investir dans un OPCVM actions au Maroc."
+    ),
+    (
+        "Quelles sont les etapes pour investir en bourse de Casablanca selon l'AMMC, "
+        "et quels documents dois-je fournir a mon intermediaire financier ?"
+    ),
+    (
+        "Comment Bank Al-Maghrib supervise-t-elle les banques marocaines et "
+        "quels mecanismes de protection des deposants existent-ils ?"
+    ),
+    (
+        "Si je rembourse un credit consommation de 20 000 dirhams sur 2 ans a un taux "
+        "de 6%, quelle est ma mensualite, et quel serait le cout total "
+        "si le taux etait de 10% ?"
+    ),
+    (
+        "Quelles sont les differences entre une assurance vie, une assurance deces "
+        "et une assurance invalidite selon le guide ACAPS ?"
+    ),
+    (
+        "Quelles sont les differences entre les actions, les obligations et les OPCVM "
+        "presentes dans les guides de l'AMMC ?"
+    ),
+    (
+        "En epargnant 300 dirhams par mois pendant 5 ans a 2.5% d'interet annuel, "
+        "et en comparant avec un credit de meme montant sur la meme duree a 7%, "
+        "quel est l'ecart financier final entre epargner et emprunter ?"
     ),
 ]
