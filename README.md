@@ -16,6 +16,7 @@ Depot unique regroupant tous les Labs et TPs du module **SMA et IAD — Master B
 | [Lab8-Workflow_avec_LangGraph](./Lab8-Workflow_avec_LangGraph) | Workflows LangGraph : graphe simple, reducers, etat message, branchements conditionnels, boucles |
 | [Lab9-Agent_avec_LangGraph](./Lab9-Agent_avec_LangGraph) | Agent LangGraph : tools, agent comme noeud, HITL fonctionnel (`@entrypoint`/`@task`), historique et fork |
 | [TP-Chef_personnel](./TP-Chef_personnel) | Agent chef cuisinier : RAG + memoire + recherche web + system prompt |
+| [Evaluation-finale](./Evaluation-finale) | Evaluation finale : RAG agentique LangGraph sur l'education financiere personnelle au Maroc |
 
 ## Prerequis communs
 
